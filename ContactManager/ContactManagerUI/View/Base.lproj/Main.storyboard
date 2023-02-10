@@ -49,16 +49,16 @@
             </objects>
             <point key="canvasLocation" x="1063.3587786259541" y="3.5211267605633805"/>
         </scene>
-        <!--새 연락처-->
+        <!--Contact Handler View Controller-->
         <scene sceneID="MYM-ou-eUU">
             <objects>
-                <viewController storyboardIdentifier="NewContact" id="tvG-h4-r7c" customClass="NewContactViewController" customModule="ContactManagerUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactHandler" id="tvG-h4-r7c" customClass="ContactHandlerViewController" customModule="ContactManagerUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="efy-Iz-dtr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ud5-EX-mGE">
-                                <rect key="frame" x="8" y="111" width="377" height="733"/>
+                                <rect key="frame" x="8" y="67" width="377" height="777"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qW7-Y1-rZ5">
                                         <rect key="frame" x="0.0" y="0.0" width="377" height="34"/>
@@ -109,7 +109,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Waj-6n-gJn">
-                                        <rect key="frame" x="0.0" y="126" width="377" height="607"/>
+                                        <rect key="frame" x="0.0" y="126" width="377" height="651"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -128,18 +128,7 @@
                             <constraint firstItem="Ud5-EX-mGE" firstAttribute="leading" secondItem="iAP-Pr-SFp" secondAttribute="leading" constant="8" id="lBe-wl-caT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="새 연락처" id="TGv-jY-ef0">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yNk-H4-Jir">
-                            <connections>
-                                <action selector="cancelButtonDidTap:" destination="tvG-h4-r7c" id="Kom-Fh-WpE"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="lBh-hi-2Qz">
-                            <connections>
-                                <action selector="saveButtonDidTap:" destination="tvG-h4-r7c" id="XId-Fc-FBn"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="TGv-jY-ef0"/>
                     <connections>
                         <outlet property="ageTextField" destination="ZkI-gj-YtX" id="CU4-Mg-46O"/>
                         <outlet property="nameTextField" destination="qcm-HE-ucM" id="98T-ig-s0d"/>
@@ -167,24 +156,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPu-tK-hYV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.64122137404578" y="3.5211267605633805"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="qEl-A1-G7z">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ml4-sL-lUi" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="03x-XH-Nr1">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="tvG-h4-r7c" kind="relationship" relationship="rootViewController" id="g9Y-1s-Crc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3c4-Fp-Wdi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1916.7938931297708" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>

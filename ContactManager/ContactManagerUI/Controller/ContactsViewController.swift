@@ -40,7 +40,8 @@ final class ContactsViewController: UIViewController {
     }
 
     @IBAction func addContact(_ sender: UIBarButtonItem) {
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "NewContact") as? NewContactViewController {
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContactHandler") as? ContactHandlerViewController {
+            viewController.handle = .add
             viewController.delegate = self
             present(UINavigationController(rootViewController: viewController), animated: true)
         }
@@ -71,8 +72,24 @@ extension ContactsViewController: UITableViewDataSource {
     }
 }
 
+extension ContactsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContactHandler") as? ContactHandlerViewController {
+            viewController.handle = .edit
+            viewController.delegate = self
+            viewController.editContact = (contacts[indexPath.row], indexPath)
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+}
+
 extension ContactsViewController: NewContactViewControllerDelegate {
-    func sendData(contact: Contact) {
+    func edit(contact: Contact, indexPath: IndexPath) {
+        contacts[indexPath.row] = contact
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+
+    func add(contact: Contact) {
         contacts.append(contact)
         let lastRowIndex = tableView.numberOfRows(inSection: 0)
         let indexPath = IndexPath(item: lastRowIndex, section: 0)

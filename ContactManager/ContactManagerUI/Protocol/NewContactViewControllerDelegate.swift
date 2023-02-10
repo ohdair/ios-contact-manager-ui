@@ -8,5 +8,6 @@
 import Foundation
 
 protocol NewContactViewControllerDelegate: NSObject {
-    func sendData(contact: Contact)
+    func add(contact: Contact)
+    func edit(contact: Contact, indexPath: IndexPath)
 }
