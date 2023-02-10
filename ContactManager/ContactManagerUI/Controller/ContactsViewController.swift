@@ -62,6 +62,13 @@ extension ContactsViewController: UITableViewDataSource {
         cell.configure(contact: contacts[indexPath.row])
         return cell
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.contacts.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 }
 
 extension ContactsViewController: NewContactViewControllerDelegate {
