@@ -39,10 +39,10 @@ final class ContactsViewController: UIViewController {
         tableView.register(nibName, forCellReuseIdentifier: ContactTableViewCell.className)
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let navigationController = segue.destination as? UINavigationController,
-           let newContactViewController = navigationController.viewControllers.first as? NewContactViewController {
-            newContactViewController.delegate = self
+    @IBAction func addContact(_ sender: UIBarButtonItem) {
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "NewContact") as? NewContactViewController {
+            viewController.delegate = self
+            present(UINavigationController(rootViewController: viewController), animated: true)
         }
     }
 }

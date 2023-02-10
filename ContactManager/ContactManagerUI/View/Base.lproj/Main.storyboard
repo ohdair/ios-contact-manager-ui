@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Elm-Qk-lVb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Elm-Qk-lVb">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,7 +37,7 @@
                     <navigationItem key="navigationItem" title="연락처" id="js4-hS-Bm4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KV4-wt-0Az">
                             <connections>
-                                <segue destination="Ml4-sL-lUi" kind="presentation" id="oq8-NI-Xc4"/>
+                                <action selector="addContact:" destination="BYZ-38-t0r" id="xZU-yt-NlQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -52,13 +52,13 @@
         <!--새 연락처-->
         <scene sceneID="MYM-ou-eUU">
             <objects>
-                <viewController id="tvG-h4-r7c" customClass="NewContactViewController" customModule="ContactManagerUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewContact" id="tvG-h4-r7c" customClass="NewContactViewController" customModule="ContactManagerUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="efy-Iz-dtr">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ud5-EX-mGE">
-                                <rect key="frame" x="8" y="64" width="377" height="711"/>
+                                <rect key="frame" x="8" y="111" width="377" height="733"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qW7-Y1-rZ5">
                                         <rect key="frame" x="0.0" y="0.0" width="377" height="34"/>
@@ -109,7 +109,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Waj-6n-gJn">
-                                        <rect key="frame" x="0.0" y="126" width="377" height="585"/>
+                                        <rect key="frame" x="0.0" y="126" width="377" height="607"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -174,7 +174,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ml4-sL-lUi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="03x-XH-Nr1">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
