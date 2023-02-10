@@ -8,8 +8,10 @@
 import UIKit
 
 final class ContactTableViewCell: UITableViewCell {
-    @IBOutlet private weak var nameAndAge: UILabel!
-    @IBOutlet private weak var phoneNumber: UILabel!
+
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var ageLabel: UILabel!
+    @IBOutlet private weak var phoneNumberLabel: UILabel!
 
     static var className: String {
         return String(describing: self)
@@ -18,7 +20,8 @@ final class ContactTableViewCell: UITableViewCell {
 
 extension ContactTableViewCell {
     func configure(contact: Contact) {
-        nameAndAge.text = "\(contact.name)(\(contact.age))"
-        phoneNumber.text = contact.phoneNumber
+        nameLabel.text = contact.name
+        ageLabel.text = contact.age.description
+        phoneNumberLabel.text = contact.phoneNumber
     }
 }
