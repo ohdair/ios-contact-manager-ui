@@ -82,6 +82,7 @@ final class ContactHandlerViewController: UIViewController {
                 } else {
                     navigationController?.popViewController(animated: true)
                 }
+            }
             alert.addAction(rightButton)
         }
         present(alert, animated: true)
