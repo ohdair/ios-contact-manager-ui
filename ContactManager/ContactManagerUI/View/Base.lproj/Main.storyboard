@@ -16,8 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="9Nn-P6-8yb">
+                                <rect key="frame" x="0.0" y="155" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jXP-z5-2Ig"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DA5-fJ-SN4">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="211" width="393" height="607"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="lja-WX-2mx"/>
@@ -29,9 +36,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DA5-fJ-SN4" secondAttribute="trailing" id="5Qs-bp-sZd"/>
+                            <constraint firstItem="9Nn-P6-8yb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DRT-ha-B9K"/>
+                            <constraint firstItem="9Nn-P6-8yb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KfM-3H-Ae6"/>
                             <constraint firstItem="DA5-fJ-SN4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZEm-Ah-6DH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DA5-fJ-SN4" secondAttribute="bottom" id="cJV-TD-MRF"/>
-                            <constraint firstItem="DA5-fJ-SN4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ykT-FF-kpJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Nn-P6-8yb" secondAttribute="trailing" id="fSb-pB-Iul"/>
+                            <constraint firstItem="DA5-fJ-SN4" firstAttribute="top" secondItem="9Nn-P6-8yb" secondAttribute="bottom" id="ykT-FF-kpJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="연락처" id="js4-hS-Bm4">
@@ -144,8 +154,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Elm-Qk-lVb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wbd-Qb-VRE">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="wbd-Qb-VRE">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
