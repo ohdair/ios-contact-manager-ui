@@ -11,23 +11,6 @@ final class ContactsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
 
     private var contacts = [
-        Contact(name: "james", age: 30, phoneNumber: "05-343-2234"),
-        Contact(name: "steven", age: 100, phoneNumber: "047-221-3432"),
-        Contact(name: "hajin", age: 33, phoneNumber: "010-3332-0093"),
-        Contact(name: "mini", age: 99, phoneNumber: "0323-33-2232"),
-        Contact(name: "hojun", age: 45, phoneNumber: "3-444-19343"),
-        Contact(name: "dooly", age: 95, phoneNumber: "932-39443-23"),
-        Contact(name: "lucy", age: 1, phoneNumber: "000-232-03333"),
-        Contact(name: "yo", age: 30, phoneNumber: "323-43-3333"),
-        Contact(name: "joy", age: 65, phoneNumber: "6894-3-3434"),
-        Contact(name: "summer", age: 84, phoneNumber: "9-32-343323"),
-        Contact(name: "green", age: 54, phoneNumber: "895-3432-344"),
-        Contact(name: "jisu", age: 30, phoneNumber: "05-343-2234"),
-        Contact(name: "hana", age: 100, phoneNumber: "047-221-3432"),
-        Contact(name: "mike", age: 33, phoneNumber: "010-3332-0093"),
-        Contact(name: "coco", age: 99, phoneNumber: "0323-33-2232"),
-        Contact(name: "tiger", age: 45, phoneNumber: "3-444-19343"),
-        Contact(name: "molly", age: 95, phoneNumber: "932-39443-23"),
         Contact(name: "Joo", age: 5, phoneNumber: "010-1234-1234"),
         Contact(name: "june", age: 4, phoneNumber: "010-5678-5678")
     ]
@@ -62,8 +45,22 @@ final class ContactsViewController: UIViewController {
 }
 
 extension ContactsViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return isSearching ? 0 : sectionOfContacts().count
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? searchedContacts.count : contacts.count
+        if isSearching {
+            return searchedContacts.count
+        }
+        let character = sectionOfContacts()[section]
+        let lastIndex: Int = contacts.lastIndex { $0.name.uppercased().hasPrefix(String(character)) } ?? 0
+        let firstIndex: Int = contacts.firstIndex { $0.name.uppercased().hasPrefix(String(character)) } ?? 0
+        return lastIndex - firstIndex + 1
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return String(sectionOfContacts()[section])
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,6 +83,12 @@ extension ContactsViewController: UITableViewDataSource {
             self.contacts.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+
+    private func sectionOfContacts() -> [Character] {
+        return contacts.compactMap { contact in
+            contact.name.uppercased().first
+        }.removeDuplicates()
     }
 }
 
@@ -127,5 +130,12 @@ extension ContactsViewController: UISearchResultsUpdating {
             }
         }
         self.tableView.reloadData()
+    }
+}
+
+extension Array where Element: Hashable {
+    func removeDuplicates() -> [Element] {
+        var dictionary = [Element: Bool]()
+        return filter { dictionary.updateValue(true, forKey: $0) == nil }
     }
 }
