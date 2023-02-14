@@ -73,7 +73,13 @@ extension ContactsViewController: UITableViewDataSource {
         if isSearching {
             cell.configure(contact: searchedContacts[indexPath.row])
         } else {
-            cell.configure(contact: contacts[indexPath.row])
+            let character = contacts.compactMap { contact in
+                contact.name.uppercased().first
+            }[indexPath.section]
+            let contact = contacts.filter { conatact in
+                conatact.name.uppercased().first! == character
+            }
+            cell.configure(contact: contact[indexPath.row])
         }
         return cell
     }
