@@ -117,9 +117,8 @@ extension ContactsViewController: NewContactViewControllerDelegate {
 
     func add(contact: Contact) {
         contacts.append(contact)
-        let lastRowIndex = tableView.numberOfRows(inSection: 0)
-        let indexPath = IndexPath(item: lastRowIndex, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+        contacts.sort { $0.name.uppercased() < $1.name.uppercased() }
+        tableView.reloadData()
     }
 }
 
