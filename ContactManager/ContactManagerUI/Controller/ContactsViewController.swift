@@ -35,6 +35,10 @@ final class ContactsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let searchController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+
         let nibName = UINib(nibName: ContactTableViewCell.className, bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: ContactTableViewCell.className)
     }
