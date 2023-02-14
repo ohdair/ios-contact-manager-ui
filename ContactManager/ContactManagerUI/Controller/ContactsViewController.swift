@@ -31,11 +31,20 @@ final class ContactsViewController: UIViewController {
         Contact(name: "Joo", age: 5, phoneNumber: "010-1234-1234"),
         Contact(name: "june", age: 4, phoneNumber: "010-5678-5678")
     ]
+    private var searchedContacts = [Contact]()
+    var isSearching: Bool {
+        let searchController = self.navigationItem.searchController
+        let isActive = searchController?.isActive ?? false
+        let isSearchBarEmpty = searchController?.searchBar.text?.isEmpty ?? false
+        return isActive && !isSearchBarEmpty
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
 
@@ -54,7 +63,7 @@ final class ContactsViewController: UIViewController {
 
 extension ContactsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count
+        return isSearching ? searchedContacts.count : contacts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,7 +73,11 @@ extension ContactsViewController: UITableViewDataSource {
         ) as? ContactTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(contact: contacts[indexPath.row])
+        if isSearching {
+            cell.configure(contact: searchedContacts[indexPath.row])
+        } else {
+            cell.configure(contact: contacts[indexPath.row])
+        }
         return cell
     }
 
@@ -98,5 +111,21 @@ extension ContactsViewController: NewContactViewControllerDelegate {
         let lastRowIndex = tableView.numberOfRows(inSection: 0)
         let indexPath = IndexPath(item: lastRowIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+}
+
+extension ContactsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        if let firstWord = text.first, firstWord.isNumber {
+            self.searchedContacts = self.contacts.filter { contact in
+                contact.phoneNumber.filter { $0.isNumber }.contains(text)
+            }
+        } else {
+            self.searchedContacts = self.contacts.filter { contact in
+                contact.name.lowercased().contains(text.lowercased())
+            }
+        }
+        self.tableView.reloadData()
     }
 }
