@@ -24,4 +24,13 @@ extension ContactTableViewCell {
         ageLabel.text = contact.age.description
         phoneNumberLabel.text = contact.phoneNumber
     }
+
+    func getContact() -> Contact? {
+        guard let name = nameLabel.text,
+              let age = Int(ageLabel.text ?? ""),
+              let phoneNumber = phoneNumberLabel.text else {
+            return nil
+        }
+        return Contact(name: name, age: UInt(age), phoneNumber: phoneNumber)
+    }
 }

@@ -103,7 +103,11 @@ extension ContactsViewController: UITableViewDelegate {
         if let viewController = storyboard?.instantiateViewController(withIdentifier: "ContactHandler") as? ContactHandlerViewController {
             viewController.handle = .edit
             viewController.delegate = self
-            viewController.editContact = (contacts[indexPath.row], indexPath)
+            guard let selectedCell = tableView.cellForRow(at: indexPath) as? ContactTableViewCell,
+                  let contact = selectedCell.getContact() else {
+                return
+            }
+            viewController.editContact = (contact, indexPath)
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
@@ -111,7 +115,12 @@ extension ContactsViewController: UITableViewDelegate {
 
 extension ContactsViewController: NewContactViewControllerDelegate {
     func edit(contact: Contact, indexPath: IndexPath) {
-        contacts[indexPath.row] = contact
+        guard let selectedCell = tableView.cellForRow(at: indexPath) as? ContactTableViewCell,
+              let selectedContact = selectedCell.getContact(),
+              let index = contacts.firstIndex(of: selectedContact) else {
+            return
+        }
+        contacts[index] = contact
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
