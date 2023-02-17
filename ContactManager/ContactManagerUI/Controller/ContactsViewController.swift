@@ -73,11 +73,11 @@ extension ContactsViewController: UITableViewDataSource {
         if isSearching {
             cell.configure(contact: searchedContacts[indexPath.row])
         } else {
-            let character = contacts.compactMap { contact in
+            let characters = contacts.compactMap { contact in
                 contact.name.uppercased().first
-            }[indexPath.section]
+            }.removeDuplicates()
             let contact = contacts.filter { conatact in
-                conatact.name.uppercased().first! == character
+                conatact.name.uppercased().first! == characters[indexPath.section]
             }
             cell.configure(contact: contact[indexPath.row])
         }
