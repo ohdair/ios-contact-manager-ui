@@ -46,7 +46,7 @@ final class ContactsViewController: UIViewController {
 
 extension ContactsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isSearching ? 0 : sectionOfContacts().count
+        return isSearching ? 1 : sectionOfContacts().count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
