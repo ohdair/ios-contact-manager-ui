@@ -11,8 +11,11 @@ final class ContactsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
 
     private var contacts = [
+        Contact(name: "apple", age: 17, phoneNumber: "010-3762-2245"),
+        Contact(name: "banana", age: 17, phoneNumber: "010-6211-2945"),
         Contact(name: "Joo", age: 5, phoneNumber: "010-1234-1234"),
-        Contact(name: "june", age: 4, phoneNumber: "010-5678-5678")
+        Contact(name: "june", age: 4, phoneNumber: "010-5678-5678"),
+        Contact(name: "strawberry", age: 17, phoneNumber: "010-7612-3458"),
     ]
     private var searchedContacts = [Contact]()
     var isSearching: Bool {
@@ -89,8 +92,13 @@ extension ContactsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.contacts.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            guard let selectedCell = tableView.cellForRow(at: indexPath) as? ContactTableViewCell,
+                  let selectedContact = selectedCell.getContact(),
+                  let selectedIndex = self.contacts.firstIndex(of: selectedContact) else {
+                return
+            }
+            self.contacts.remove(at: selectedIndex)
+            self.tableView.reloadData()
         }
     }
 
