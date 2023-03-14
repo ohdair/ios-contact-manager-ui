@@ -60,6 +60,9 @@ extension ContactsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isSearching {
+            return "Search Results"
+        }
         return String(sectionOfContacts()[section])
     }
 
