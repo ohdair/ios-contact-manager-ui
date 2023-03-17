@@ -153,7 +153,10 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
 ---
 # 📓 학습내용 요점
-(수정 중)
+1. tableView의 `reload()`를 사용하는 것은 삽입 및 삭제 단 한개의 행을 추가/삭제 하는 것보다는 비용이 많이 들기에 `deleteRows()`, `deleteSections()`에 대한 사용에 대해 배웠어요
+2. 연락처를 삽입하는 화면과 수정하는 화면은 동일하게 구성을 했기에 재활용을 하는 방법에 대해서 고민을 하게 되었고, `ContactHandlerViewController`를 사용할 때에는 타입을 받아서 구현을 하도록 만들었어요
+3. 데이터 구조와 table의 섹션 그리고 행에 대해서 어떻게 하면 더 구현을 하는 게 좋을 지 고민을 하였고, 데이터를 tableView의 섹션에 맞춰 구성하는 것과 데이터에서 tableView에서 섹션별로 데이터를 추가하는 것이 결국 같은 로직이라고 생각되어 데이터는 배열로 구현을 했고 좀 더 나은 방법에 대해서 고민을 하게 되었어요.
 
 # 🧨 트러블 슈팅
-(수정 중)
+1. STEP을 BONUS까지 진행을 하면서 tableView에서 이름별로 섹션을 추가하였고 행을 삭제하는 메서드에서 문제가 생긴 것을 발견하였고 행이 하나 남았을 때 Cell을 지우게 되면 섹션의 수가 맞지 않아서 문제가 발생을 하였습니다. Cell을 삭제를 할 때 섹션도 삭제를 해야하는 것을 확인하고 `deleteSections()`을 사용하였습니다. 또한, 개별적인 삭제 메서드를 사용한 것이 아니기에 `beginUpdates()`, `endUpdates()` 또한 사용을 하여 해결하였습니다.
+2. 데이터는 1차원 배열이고 TableView의 섹션과 행은 2차원 배열 형식이라서 행의 갯수를 맞추는 과정이 어려웠으며, 섹션마다의 갯수를 사용할 때에는 `lastIndex`와 `firstIndex`를 이용하여 갯수를 세었습니다
